@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:evo/widget/neu_card.dart';
 
-class StatusCard extends StatelessWidget {
+class StatusMiniCard extends StatelessWidget {
   final String title;
   final Widget? subtitle;
   final Widget? childs;
-  const StatusCard(
+  const StatusMiniCard(
       {super.key, required this.title, this.childs, this.subtitle});
   // var text = widget.data;
   static const TextStyle titleStyle = TextStyle(
-    fontSize: 16,
+    fontSize: 40,
     fontWeight: FontWeight.w400,
   );
   @override
@@ -17,29 +17,30 @@ class StatusCard extends StatelessWidget {
     return NeuCard(
       childs: Container(
         // height: 45,
-        margin: const EdgeInsets.all(20),
+        margin: const EdgeInsets.fromLTRB(20, 10, 25, 10),
         alignment: Alignment.topLeft,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                child: childs,
+              ),
+            ),
+            const SizedBox(width: 5),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.topLeft,
                   child: Text(
                     title,
                     style: titleStyle,
                   ),
                 ),
               ],
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: Container(
-                child: childs,
-              ),
             ),
           ],
         ),

@@ -21,7 +21,9 @@ class VehiclePage extends StatelessWidget {
             children: [
               AppBarCard(
                 iconLeft: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    c.goToPage("Home");
+                  },
                   icon: const Icon(LineIcons.angleLeft),
                   iconSize: 20,
                 ),
@@ -36,8 +38,8 @@ class VehiclePage extends StatelessWidget {
               Expanded(
                 child: NeuCard(
                   childs: Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text("ini vehicle information"),
+                    padding: const EdgeInsets.all(20),
+                    child: const Text("ini vehicle information"),
                   ),
                 ),
               ),
