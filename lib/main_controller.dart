@@ -1,3 +1,4 @@
+import 'package:evo/page/blu_page.dart';
 import 'package:evo/page/home_page.dart';
 import 'package:evo/page/settings_page.dart';
 import 'package:evo/page/vehicle_page.dart';
@@ -13,6 +14,7 @@ class MainController extends GetxController {
 
   List<Widget> widgetOptions = <Widget>[
     const HomePage(),
+    const BluPage(),
     const NavigationPage(),
     const VehiclePage(),
     const SettingsPage(),
@@ -29,12 +31,14 @@ class MainController extends GetxController {
   goToPage(String page) {
     if (page == "Home") {
       selectedIndex.value = 0;
-    } else if (page == "Navigation") {
+    } else if (page == "Bluetooth") {
       selectedIndex.value = 1;
-    } else if (page == "Vehicle") {
+    } else if (page == "Navigation") {
       selectedIndex.value = 2;
-    } else if (page == "Settings") {
+    } else if (page == "Vehicle") {
       selectedIndex.value = 3;
+    } else if (page == "Settings") {
+      selectedIndex.value = 4;
     }
 
     update();

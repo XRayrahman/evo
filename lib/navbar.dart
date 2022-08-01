@@ -51,6 +51,10 @@ class NavBar extends StatelessWidget {
                 text: 'Home',
               ),
               GButton(
+                icon: LineIcons.bluetooth,
+                text: 'Bluetooth',
+              ),
+              GButton(
                 icon: LineIcons.locationArrow,
                 text: 'Navigation',
               ),

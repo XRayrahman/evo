@@ -4,14 +4,14 @@ import 'package:evo/widget/neu_card.dart';
 class ListCard extends StatelessWidget {
   final String title;
   final String subtitle;
-  final TextStyle subtitleStyle;
+  final TextStyle? subtitleStyle;
   final Widget? childs;
   const ListCard(
       {super.key,
       required this.title,
       this.childs,
       required this.subtitle,
-      required this.subtitleStyle});
+      this.subtitleStyle});
   // var text = widget.data;
   static const TextStyle titleStyle = TextStyle(
     fontSize: 24,

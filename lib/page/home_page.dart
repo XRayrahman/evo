@@ -1,3 +1,6 @@
+import 'package:evo/page/blu_page.dart';
+import 'package:evo/page/bluetooth_page.dart';
+import 'package:evo/page/navigation_page.dart';
 import 'package:evo/status_controller.dart';
 import 'package:evo/widget/app_bar.dart';
 import 'package:evo/widget/battery.dart';
@@ -52,15 +55,17 @@ class HomePage extends StatelessWidget {
                             childs: Column(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(25),
+                                  padding: const EdgeInsets.all(25),
                                   child: Obx(
                                     () => FittedBox(
                                       fit: BoxFit.fitHeight,
                                       child: RotatedBox(
                                         quarterTurns: 3,
                                         child: BatteryWidget(
-                                          value: s.batterySocVal.value.toDouble(),
-                                          size: MediaQuery.of(context).size.width,
+                                          value:
+                                              s.batterySocVal.value.toDouble(),
+                                          size:
+                                              MediaQuery.of(context).size.width,
                                         ),
                                       ),
                                     ),
@@ -89,9 +94,10 @@ class HomePage extends StatelessWidget {
                               child: StatusMiniCard(
                                 title: "V ",
                                 childs: Container(
-                                  padding: EdgeInsets.all(2),
+                                  padding: const EdgeInsets.all(2),
                                   child: Obx(
-                                    () => Text('${s.batteryVoltVal.value}',
+                                    () => Text(
+                                      '${s.batteryVoltVal.value}',
                                       style: const TextStyle(fontSize: 40),
                                     ),
                                   ),
@@ -105,26 +111,34 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               )),
-              ListCard(
-                title: "Bluetooth",
-                subtitle: "connect with dashboard",
-                subtitleStyle: const TextStyle(),
-                childs: Row(children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(LineIcons.bluetooth),
-                  )
-                ]),
+              GestureDetector(
+                onTap: () => Get.to(
+                  () => const BluPage(),
+                ),
+                child: ListCard(
+                  title: "Bluetooth",
+                  subtitle: "connect with dashboard",
+                  subtitleStyle: const TextStyle(),
+                  childs: Row(children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(LineIcons.bluetooth),
+                    )
+                  ]),
+                ),
               ),
-              ListCard(
-                title: "Navigation",
-                subtitle: "estimate travel time and lineage",
-                subtitleStyle: const TextStyle(),
-                childs: IconButton(
-                    onPressed: () {
-                      c.goToPage("Navigation");
-                    },
-                    icon: const Icon(LineIcons.locationArrow)),
+              GestureDetector(
+                onTap: () => c.goToPage("Navigation"),
+                child: ListCard(
+                  title: "Navigation",
+                  subtitle: "estimate travel time and lineage",
+                  subtitleStyle: const TextStyle(),
+                  childs: IconButton(
+                      onPressed: () {
+                        c.goToPage("Navigation");
+                      },
+                      icon: const Icon(LineIcons.locationArrow)),
+                ),
               ),
             ],
           ),

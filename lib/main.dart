@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:evo/main_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fullscreen/fullscreen.dart';
 import 'package:evo/main_page.dart';
@@ -16,11 +17,25 @@ class EvoApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    MainController c = MainController();
     return GetMaterialApp(
       title: 'EVOLION',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
+          primaryColor: c.navyActive,
+          primarySwatch: Colors.blueGrey,
+          cardColor: c.navyActive,
+          colorScheme: ColorScheme(
+              brightness: Brightness.light,
+              primary: c.navyActive,
+              onPrimary: Colors.white,
+              secondary: c.navyActive,
+              onSecondary: Colors.white,
+              error: Colors.red.shade500,
+              onError: Colors.white,
+              background: Colors.grey.shade300,
+              onBackground: Colors.black,
+              surface: Colors.white,
+              onSurface: Colors.black)),
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
