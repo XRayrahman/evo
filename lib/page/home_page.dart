@@ -51,24 +51,18 @@ class HomePage extends StatelessWidget {
                             title: "Battery",
                             childs: Column(
                               children: [
-                                Expanded(
-                                    // alignment: Alignment.centerLeft,
-                                    // padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
-                                    child: FittedBox(
-                                  fit: BoxFit.fitHeight,
+                                Container(
+                                  padding: EdgeInsets.all(25),
                                   child: Obx(
-                                    () => Text(
-                                      "${s.batterySocVal.value}%",
-                                      // style: const TextStyle(fontSize: 50),
-                                    ),
-                                  ),
-                                )),
-                                Obx(
-                                  () => FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: BatteryWidget(
-                                      value: s.batterySocVal.value.toDouble(),
-                                      size: MediaQuery.of(context).size.width,
+                                    () => FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: RotatedBox(
+                                        quarterTurns: 3,
+                                        child: BatteryWidget(
+                                          value: s.batterySocVal.value.toDouble(),
+                                          size: MediaQuery.of(context).size.width,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -87,15 +81,20 @@ class HomePage extends StatelessWidget {
                                 title: "°C",
                                 childs: Text(
                                   "34",
-                                  style: TextStyle(fontSize: 40),
+                                  // style: TextStyle(fontSize: 40),
                                 ),
                               ),
                             ),
                             Expanded(
                               child: StatusMiniCard(
                                 title: "V ",
-                                childs: Obx(
-                                  () => Text('${s.batteryVoltVal.value}'),
+                                childs: Container(
+                                  padding: EdgeInsets.all(2),
+                                  child: Obx(
+                                    () => Text('${s.batteryVoltVal.value}',
+                                      style: const TextStyle(fontSize: 40),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

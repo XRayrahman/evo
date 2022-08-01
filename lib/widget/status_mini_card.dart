@@ -9,7 +9,7 @@ class StatusMiniCard extends StatelessWidget {
       {super.key, required this.title, this.childs, this.subtitle});
   // var text = widget.data;
   static const TextStyle titleStyle = TextStyle(
-    fontSize: 40,
+    fontSize: 50,
     fontWeight: FontWeight.w400,
   );
   @override
@@ -17,14 +17,14 @@ class StatusMiniCard extends StatelessWidget {
     return NeuCard(
       childs: Container(
         // height: 45,
-        margin: const EdgeInsets.fromLTRB(20, 15, 25, 15),
+        margin: const EdgeInsets.fromLTRB(20, 30, 25, 30),
         alignment: Alignment.topLeft,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: FittedBox(
-                fit: BoxFit.contain,
+                fit: BoxFit.fitHeight,
                 child: childs,
               ),
             ),
@@ -35,10 +35,14 @@ class StatusMiniCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      title,
-                      // style: titleStyle,
+                    fit: BoxFit.fitHeight,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 2),
+                      alignment: Alignment.center,
+                      child: Text(
+                        title,
+                        // style: titleStyle,
+                      ),
                     ),
                   ),
                 ),
