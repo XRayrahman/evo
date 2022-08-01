@@ -17,14 +17,14 @@ class StatusMiniCard extends StatelessWidget {
     return NeuCard(
       childs: Container(
         // height: 45,
-        margin: const EdgeInsets.fromLTRB(20, 10, 25, 10),
+        margin: const EdgeInsets.fromLTRB(20, 15, 25, 15),
         alignment: Alignment.topLeft,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Container(
-                alignment: Alignment.center,
+              child: FittedBox(
+                fit: BoxFit.contain,
                 child: childs,
               ),
             ),
@@ -33,11 +33,13 @@ class StatusMiniCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    title,
-                    style: titleStyle,
+                Expanded(
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text(
+                      title,
+                      // style: titleStyle,
+                    ),
                   ),
                 ),
               ],

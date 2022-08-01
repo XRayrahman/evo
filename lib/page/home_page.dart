@@ -51,17 +51,26 @@ class HomePage extends StatelessWidget {
                             title: "Battery",
                             childs: Column(
                               children: [
-                                Container(
-                                    alignment: Alignment.centerLeft,
+                                Expanded(
+                                    // alignment: Alignment.centerLeft,
                                     // padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
-                                    child: Obx(
-                                      () => Text(
-                                        "${s.batteryValue.value}%",
-                                        style: const TextStyle(fontSize: 50),
-                                      ),
-                                    )),
-                                const BatteryWidget(
-                                  value: 50,
+                                    child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Obx(
+                                    () => Text(
+                                      "${s.batterySocVal.value}%",
+                                      // style: const TextStyle(fontSize: 50),
+                                    ),
+                                  ),
+                                )),
+                                Obx(
+                                  () => FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: BatteryWidget(
+                                      value: s.batterySocVal.value.toDouble(),
+                                      size: MediaQuery.of(context).size.width,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -72,8 +81,8 @@ class HomePage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           // mainAxisAlignment: ,
-                          children: const [
-                            Expanded(
+                          children: [
+                            const Expanded(
                               child: StatusMiniCard(
                                 title: "°C",
                                 childs: Text(
@@ -85,9 +94,8 @@ class HomePage extends StatelessWidget {
                             Expanded(
                               child: StatusMiniCard(
                                 title: "V ",
-                                childs: Text(
-                                  "74",
-                                  style: TextStyle(fontSize: 40),
+                                childs: Obx(
+                                  () => Text('${s.batteryVoltVal.value}'),
                                 ),
                               ),
                             ),
