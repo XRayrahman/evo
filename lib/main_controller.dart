@@ -16,7 +16,7 @@ class MainController extends GetxController {
     const HomePage(),
     const BluPage(),
     const NavigationPage(),
-    const VehiclePage(),
+    // const VehiclePage(),
     const SettingsPage(),
   ];
 
@@ -35,10 +35,8 @@ class MainController extends GetxController {
       selectedIndex.value = 1;
     } else if (page == "Navigation") {
       selectedIndex.value = 2;
-    } else if (page == "Vehicle") {
-      selectedIndex.value = 3;
     } else if (page == "Settings") {
-      selectedIndex.value = 4;
+      selectedIndex.value = 3;
     }
 
     update();

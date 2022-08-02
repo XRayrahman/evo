@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:evo/widget/neu_card.dart';
+import 'package:line_icons/line_icons.dart';
 
 class StatusMiniCard extends StatelessWidget {
   final String title;
   final Widget? subtitle;
   final Widget? childs;
+  final IconData? iconRight;
   const StatusMiniCard(
-      {super.key, required this.title, this.childs, this.subtitle});
+      {super.key,
+      required this.title,
+      this.childs,
+      this.subtitle,
+      this.iconRight});
   // var text = widget.data;
   static const TextStyle titleStyle = TextStyle(
     fontSize: 50,
@@ -15,41 +21,38 @@ class StatusMiniCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeuCard(
-      childs: Container(
-        // height: 45,
-        margin: const EdgeInsets.fromLTRB(20, 30, 25, 30),
-        alignment: Alignment.topLeft,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: FittedBox(
-                fit: BoxFit.fitHeight,
-                child: childs,
-              ),
-            ),
-            const SizedBox(width: 5),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      childs: Column(
+        children: [
+          Container(
+            height: 50,
+            // color: Colors.amber,
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: FittedBox(
-                    fit: BoxFit.fitHeight,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      alignment: Alignment.center,
-                      child: Text(
-                        title,
-                        // style: titleStyle,
-                      ),
-                    ),
-                  ),
+                Container(child: subtitle),
+                Icon(
+                  iconRight,
+                  size: 16,
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Container(
+                margin: const EdgeInsets.fromLTRB(10, 0, 10, 6),
+                alignment: Alignment.center,
+                child: Text(
+                  title,
+                  // style: titleStyle,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

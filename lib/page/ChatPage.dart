@@ -48,7 +48,7 @@ class _ChatPage extends State<ChatPage> {
         isDisconnecting = false;
       });
 
-      connection!.input!.listen(_onDataReceived).onDone(() {
+      connection.input!.listen(_onDataReceived).onDone(() {
         // Example: Detect which side closed the connection
         // There should be `isDisconnecting` flag to show are we are (locally)
         // in middle of disconnecting process, should be set before calling

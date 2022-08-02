@@ -23,12 +23,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              AppBarCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: AppBarCard(
                 title: "Home",
                 iconRight: IconButton(
                   onPressed: () {
@@ -38,8 +38,11 @@ class HomePage extends StatelessWidget {
                   iconSize: 24,
                 ),
               ),
-              Expanded(
-                  child: NeuCard(
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+              height: 320,
+              child: NeuCard(
                 childs: Container(
                   padding: const EdgeInsets.all(10),
                   child: Row(
@@ -52,26 +55,38 @@ class HomePage extends StatelessWidget {
                           // padding: EdgeInsets.all(10),
                           child: StatusCard(
                             title: "Battery",
-                            childs: Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(25),
-                                  child: Obx(
-                                    () => FittedBox(
-                                      fit: BoxFit.fitHeight,
-                                      child: RotatedBox(
-                                        quarterTurns: 3,
-                                        child: BatteryWidget(
-                                          value:
-                                              s.batterySocVal.value.toDouble(),
-                                          size:
-                                              MediaQuery.of(context).size.width,
+                            iconRight: LineIcons.plug,
+                            childs: Container(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: FittedBox(
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 2),
+                                        child: Obx(
+                                          () => Text(
+                                            "${s.batterySocVal.value}%",
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Obx(
+                                    () => RotatedBox(
+                                      quarterTurns: 3,
+                                      child: BatteryWidget(
+                                        value: s.batterySocVal.value.toDouble(),
+                                        size: 110,
+                                        // size: MediaQuery.of(context)
+                                        //     .size
+                                        //     .height,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -83,24 +98,23 @@ class HomePage extends StatelessWidget {
                           children: [
                             const Expanded(
                               child: StatusMiniCard(
-                                title: "°C",
-                                childs: Text(
-                                  "34",
-                                  // style: TextStyle(fontSize: 40),
+                                title: "34 °C",
+                                subtitle: Text(
+                                  "Temperature",
+                                  style: TextStyle(fontSize: 16),
                                 ),
+                                iconRight: LineIcons.thermometerAlt4Full,
                               ),
                             ),
                             Expanded(
-                              child: StatusMiniCard(
-                                title: "V ",
-                                childs: Container(
-                                  padding: const EdgeInsets.all(2),
-                                  child: Obx(
-                                    () => Text(
-                                      '${s.batteryVoltVal.value}',
-                                      style: const TextStyle(fontSize: 40),
-                                    ),
+                              child: Obx(
+                                () => StatusMiniCard(
+                                  subtitle: const Text(
+                                    "Voltage",
+                                    style: TextStyle(fontSize: 16),
                                   ),
+                                  title: "${s.batteryVoltVal.value.toInt()} V ",
+                                  iconRight: LineIcons.lightningBolt,
                                 ),
                               ),
                             ),
@@ -110,38 +124,70 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-              )),
-              GestureDetector(
-                onTap: () => Get.to(
-                  () => const BluPage(),
-                ),
-                child: ListCard(
-                  title: "Bluetooth",
-                  subtitle: "connect with dashboard",
-                  subtitleStyle: const TextStyle(),
-                  childs: Row(children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(LineIcons.bluetooth),
-                    )
-                  ]),
-                ),
               ),
-              GestureDetector(
-                onTap: () => c.goToPage("Navigation"),
-                child: ListCard(
-                  title: "Navigation",
-                  subtitle: "estimate travel time and lineage",
-                  subtitleStyle: const TextStyle(),
-                  childs: IconButton(
-                      onPressed: () {
-                        c.goToPage("Navigation");
-                      },
-                      icon: const Icon(LineIcons.locationArrow)),
-                ),
+            ),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Divider(),
+                  ),
+                  GestureDetector(
+                    onTap: () => c.goToPage("Bluetooth"),
+                    child: ListCard(
+                      title: "Bluetooth",
+                      subtitle: "connect with dashboard",
+                      subtitleStyle: const TextStyle(),
+                      childs: Row(children: [
+                        IconButton(
+                          onPressed: () {
+                            c.goToPage("Bluetooth");
+                          },
+                          icon: const Icon(LineIcons.bluetooth),
+                        )
+                      ]),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Divider(),
+                  ),
+                  GestureDetector(
+                    onTap: () => c.goToPage("Navigation"),
+                    child: ListCard(
+                      title: "Navigation",
+                      subtitle: "estimate travel time and lineage",
+                      subtitleStyle: const TextStyle(),
+                      childs: IconButton(
+                          onPressed: () {
+                            c.goToPage("Navigation");
+                          },
+                          icon: const Icon(LineIcons.locationArrow)),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Divider(),
+                  ),
+                  GestureDetector(
+                    onTap: () => c.goToPage("Settings"),
+                    child: ListCard(
+                      title: "Settings",
+                      subtitle: "Edit Account and Preferences",
+                      subtitleStyle: const TextStyle(),
+                      childs: IconButton(
+                          onPressed: () {
+                            c.goToPage("Settings");
+                          },
+                          icon: const Icon(LineIcons.cog)),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

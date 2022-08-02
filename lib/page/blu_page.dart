@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:evo/main_controller.dart';
+import 'package:evo/page/blu_button.dart';
+import 'package:evo/page/home_page.dart';
+import 'package:evo/widget/list_info.dart';
 import 'package:evo/widget/neu_card.dart';
 import 'package:get/get.dart';
 // import 'package:evo/bluetooth_controller.dart';
@@ -101,93 +104,61 @@ class _BluPage extends State<BluPage> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: AppBarCard(
                 title: "Bluetooth",
                 iconRight: IconButton(
                   onPressed: () {
-                    c.goToPage("Settings");
+                    FlutterBluetoothSerial.instance.openSettings();
                   },
                   icon: const Icon(LineIcons.cog),
                   iconSize: 24,
                 ),
               ),
             ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: ListInfo(
+                title: "Local Adapter",
+                subtitle: "Bluetooth Information",
+                subtitleStyle: const TextStyle(),
+                childs: Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Address : $_address"),
+                      Text("Name : $_name"),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            BlueButton(),
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 children: <Widget>[
-                  const Divider(),
-                  ListCard(
-                    title: "Bluetooth Status",
-                    subtitleStyle: const TextStyle(),
-                    subtitle: _bluetoothState.toString(),
-                    // childs: Obx(
-                    //   () => Switch(
-                    //       value: b.bluetoothStatus.value, onChanged: b.onSwitch()),
-                    // ),
-                    childs: Row(
-                      children: [
-                        ElevatedButton(
-                          child: const Text('Settings'),
-                          onPressed: () {
-                            FlutterBluetoothSerial.instance.openSettings();
-                          },
-                        ),
-                        const SizedBox(width: 10),
-                        Switch(
-                          value: _bluetoothState.isEnabled,
-                          onChanged: (bool value) {
-                            // Do the request and update with the true value then
-                            future() async {
-                              // async lambda seems to not working
-                              if (value) {
-                                await FlutterBluetoothSerial.instance
-                                    .requestEnable();
-                              } else {
-                                await FlutterBluetoothSerial.instance
-                                    .requestDisable();
-                              }
-                            }
-
-                            future().then((_) {
-                              setState(() {});
-                            });
-                          },
-                        ),
-                      ],
-                    ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Divider(),
                   ),
-                  ListCard(
-                    title: "Local Adapter",
-                    subtitle: "Bluetooth Information",
-                    subtitleStyle: const TextStyle(),
-                    childs: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Address : $_address"),
-                        Text("Name : $_name"),
-                      ],
-                    ),
-                  ),
-                  ListCard(
+                  ListInfo(
                     title: _discoverableTimeoutSecondsLeft == 0
                         ? "Discoverable"
                         : "Discoverable for ${_discoverableTimeoutSecondsLeft}s",
                     subtitle: "EVOLION",
                     subtitleStyle: const TextStyle(),
                     childs: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Checkbox(
                           value: _discoverableTimeoutSecondsLeft != 0,
                           onChanged: null,
                         ),
-                        const IconButton(
-                          icon: Icon(Icons.edit),
-                          onPressed: null,
-                        ),
                         IconButton(
-                          icon: const Icon(Icons.refresh),
+                          icon: const Icon(LineIcons.alternateRedo),
                           onPressed: () async {
                             print('Discoverable requested');
                             final int timeout = (await FlutterBluetoothSerial
@@ -224,11 +195,53 @@ class _BluPage extends State<BluPage> {
                               });
                             });
                           },
-                        )
+                        ),
                       ],
                     ),
                   ),
-                  ListCard(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Divider(),
+                  ),
+                  ListInfo(
+                    title: "Bluetooth Status",
+                    subtitleStyle: const TextStyle(),
+                    subtitle: _bluetoothState.toString(),
+                    // childs: Obx(
+                    //   () => Switch(
+                    //       value: b.bluetoothStatus.value, onChanged: b.onSwitch()),
+                    // ),
+                    childs: Row(
+                      children: [
+                        const SizedBox(width: 10),
+                        Switch(
+                          value: _bluetoothState.isEnabled,
+                          onChanged: (bool value) {
+                            // Do the request and update with the true value then
+                            future() async {
+                              // async lambda seems to not working
+                              if (value) {
+                                await FlutterBluetoothSerial.instance
+                                    .requestEnable();
+                              } else {
+                                await FlutterBluetoothSerial.instance
+                                    .requestDisable();
+                              }
+                            }
+
+                            future().then((_) {
+                              setState(() {});
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Divider(),
+                  ),
+                  ListInfo(
                     title: "Specific pin for Pairing",
                     subtitle: "Pin 1234",
                     childs: Switch(
@@ -256,118 +269,11 @@ class _BluPage extends State<BluPage> {
                       },
                     ),
                   ),
-                  SizedBox(
-                    height: 130,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            // behavior: ,
-                            onTap: () => Get.to(DiscoveryPage()),
-                            child: NeuCard(
-                              childs: Padding(
-                                padding: EdgeInsets.all(20.0),
-                                child: Column(
-                                  children: const [
-                                    Expanded(
-                                        child: FittedBox(
-                                            child: Icon(LineIcons.search))),
-                                    Text(
-                                      "Discover",
-                                      style: TextStyle(fontSize: 30),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: GestureDetector(
-                            child: NeuCard(
-                              childs: Padding(
-                                padding: EdgeInsets.all(20.0),
-                                child: Column(
-                                  children: const [
-                                    Expanded(
-                                        child: FittedBox(
-                                            child:
-                                                Icon(LineIcons.commentDots))),
-                                    Text(
-                                      "Chat",
-                                      style: TextStyle(fontSize: 30),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ListTile(
-                    title: ElevatedButton(
-                        child: const Text('Explore discovered devices'),
-                        onPressed: () async {
-                          final BluetoothDevice? selectedDevice =
-                              await Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return const DiscoveryPage();
-                              },
-                            ),
-                          );
-
-                          if (selectedDevice != null) {
-                            print('Discovery -> selected ' +
-                                selectedDevice.address);
-                          } else {
-                            print('Discovery -> no device selected');
-                          }
-                        }),
-                  ),
-                  ListTile(
-                    title: ElevatedButton(
-                      child: const Text('Connect to paired device to chat'),
-                      onPressed: () async {
-                        final BluetoothDevice? selectedDevice =
-                            await Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const SelectBondedDevicePage(
-                                  checkAvailability: false);
-                            },
-                          ),
-                        );
-
-                        if (selectedDevice != null) {
-                          print(
-                              'Connect -> selected ' + selectedDevice.address);
-                          _startChat(context, selectedDevice);
-                        } else {
-                          print('Connect -> no device selected');
-                        }
-                      },
-                    ),
-                  ),
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  void _startChat(BuildContext context, BluetoothDevice server) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return ChatPage(server: server);
-        },
       ),
     );
   }

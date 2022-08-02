@@ -25,9 +25,9 @@ class _BatteryState extends State<BatteryWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _height = widget.size / 2.5;
+    _height = widget.size / 2;
     _cellWidth =
-        widget.size - (widget.size / 2.88) / (2 * 2 * 3) - _height / (2 * 2.5);
+        widget.size - (widget.size / 2.88) / (2 * 2 * 3) - _height / (2 * 1.5);
 
     return SizedBox(
       height: _height,
@@ -37,7 +37,7 @@ class _BatteryState extends State<BatteryWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(widget.size / 18.5),
+            borderRadius: BorderRadius.circular(widget.size / 16.5),
             child: Stack(
               children: [
                 Container(
@@ -49,7 +49,9 @@ class _BatteryState extends State<BatteryWidget> {
                 ),
                 SizedBox(
                   height: _height,
-                  width: widget.value / 100 * _cellWidth,
+                  width: widget.value <= 90
+                      ? widget.value / 90 * _cellWidth
+                      : _cellWidth,
                   child: Container(
                     height: _height,
                     width: widget.value,
@@ -62,15 +64,34 @@ class _BatteryState extends State<BatteryWidget> {
             ),
           ),
           SizedBox(width: (widget.size / 2.88) / (2 * 2 * 3)),
-          Container(
-            height: _height / 2,
-            width: _height / (2 * 2.5),
-            decoration: BoxDecoration(
-              color: widget.inActiveColor,
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(widget.size / 18.5),
-                topRight: Radius.circular(widget.size / 18.5),
-              ),
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(widget.size / 16.5),
+              topRight: Radius.circular(widget.size / 16.5),
+            ),
+            child: Stack(
+              children: [
+                Container(
+                  height: _height / 2,
+                  width: _height / (2 * 2.5),
+                  decoration: BoxDecoration(
+                    color: widget.inActiveColor,
+                  ),
+                ),
+                SizedBox(
+                  height: _height / 2,
+                  width: widget.value <= 90
+                      ? 0
+                      : widget.value / 100 * _height / (2 * 2.5),
+                  child: Container(
+                    height: _height,
+                    width: widget.value,
+                    decoration: BoxDecoration(
+                      color: widget.activeColor ?? _batteryColor(widget.value),
+                    ),
+                  ),
+                ),
+              ],
             ),
           )
         ],

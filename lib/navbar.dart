@@ -58,10 +58,10 @@ class NavBar extends StatelessWidget {
                 icon: LineIcons.locationArrow,
                 text: 'Navigation',
               ),
-              GButton(
-                icon: LineIcons.motorcycle,
-                text: 'Vehicle',
-              ),
+              // GButton(
+              //   icon: LineIcons.motorcycle,
+              //   text: 'Vehicle',
+              // ),
               GButton(
                 icon: LineIcons.user,
                 text: 'Settings',

@@ -5,8 +5,13 @@ class StatusCard extends StatelessWidget {
   final String title;
   final Widget? subtitle;
   final Widget? childs;
+  final IconData? iconRight;
   const StatusCard(
-      {super.key, required this.title, this.childs, this.subtitle});
+      {super.key,
+      required this.title,
+      this.childs,
+      this.subtitle,
+      this.iconRight});
   // var text = widget.data;
   static const TextStyle titleStyle = TextStyle(
     fontSize: 16,
@@ -24,18 +29,18 @@ class StatusCard extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    title,
-                    style: titleStyle,
-                  ),
+                Text(
+                  title,
+                  style: titleStyle,
+                ),
+                Icon(
+                  iconRight,
+                  size: 16,
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             Expanded(
               child: Container(
                 child: childs,

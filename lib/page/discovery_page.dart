@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-
+import 'package:line_icons/line_icons.dart';
 import './BluetoothDeviceListEntry.dart';
 
 class DiscoveryPage extends StatefulWidget {
@@ -81,19 +81,23 @@ class _DiscoveryPage extends State<DiscoveryPage> {
             ? const Text('Discovering devices')
             : const Text('Discovered devices'),
         actions: <Widget>[
-          isDiscovering
-              ? FittedBox(
-                  child: Container(
-                    margin: const EdgeInsets.all(16.0),
-                    child: const CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    ),
-                  ),
-                )
-              : IconButton(
-                  icon: const Icon(Icons.replay),
-                  onPressed: _restartDiscovery,
-                )
+          if (isDiscovering)
+            FittedBox(
+              child: Container(
+                margin: const EdgeInsets.all(16.0),
+                child: const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.only(right: 5.0),
+              child: IconButton(
+                icon: const Icon(LineIcons.alternateRedo),
+                onPressed: _restartDiscovery,
+              ),
+            )
         ],
       ),
       body: ListView.builder(
