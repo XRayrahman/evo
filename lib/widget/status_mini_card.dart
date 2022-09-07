@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:evo/widget/neu_card.dart';
-import 'package:line_icons/line_icons.dart';
 
 class StatusMiniCard extends StatelessWidget {
   final String title;
@@ -27,7 +26,7 @@ class StatusMiniCard extends StatelessWidget {
             height: 50,
             // color: Colors.amber,
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

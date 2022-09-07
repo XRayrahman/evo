@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 class BluetoothController extends GetxController {
-  BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
+  // BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
   var bluetoothStatus = "Dashboard is not Connected".obs;
 
   // statusBluetooth(){

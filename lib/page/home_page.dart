@@ -1,6 +1,3 @@
-import 'package:evo/page/blu_page.dart';
-import 'package:evo/page/bluetooth_page.dart';
-import 'package:evo/page/navigation_page.dart';
 import 'package:evo/status_controller.dart';
 import 'package:evo/widget/app_bar.dart';
 import 'package:evo/widget/battery.dart';
@@ -40,7 +37,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
               height: 320,
               child: NeuCard(
                 childs: Container(
@@ -63,8 +60,8 @@ class HomePage extends StatelessWidget {
                                   Expanded(
                                     child: FittedBox(
                                       child: Container(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 2),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 0, 0, 2),
                                         child: Obx(
                                           () => Text(
                                             "${s.batterySocVal.value}%",

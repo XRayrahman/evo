@@ -32,14 +32,14 @@ class BlueButton extends StatelessWidget {
                 );
 
                 if (selectedDevice != null) {
-                  print('Discovery -> selected ' + selectedDevice.address);
+                  print('Discovery -> selected ${selectedDevice.address}');
                 } else {
                   print('Discovery -> no device selected');
                 }
               },
               child: NeuCard(
                 childs: Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: const [
                       Expanded(child: FittedBox(child: Icon(LineIcons.search))),
@@ -67,7 +67,7 @@ class BlueButton extends StatelessWidget {
                 );
 
                 if (selectedDevice != null) {
-                  print('Connect -> selected ' + selectedDevice.address);
+                  print('Connect -> selected ${selectedDevice.address}');
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
@@ -81,7 +81,7 @@ class BlueButton extends StatelessWidget {
               },
               child: NeuCard(
                 childs: Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: const [
                       Expanded(

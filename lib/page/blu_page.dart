@@ -2,18 +2,11 @@ import 'dart:async';
 
 import 'package:evo/main_controller.dart';
 import 'package:evo/page/blu_button.dart';
-import 'package:evo/page/home_page.dart';
 import 'package:evo/widget/list_info.dart';
-import 'package:evo/widget/neu_card.dart';
-import 'package:get/get.dart';
 // import 'package:evo/bluetooth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'BackgroundCollectingTask.dart';
-import 'discovery_page.dart';
-import 'SelectBondedDevicePage.dart';
-import 'ChatPage.dart';
-import 'package:evo/widget/list_card.dart';
 import 'package:evo/widget/app_bar.dart';
 import 'package:line_icons/line_icons.dart';
 // import './helpers/LineChart.dart';

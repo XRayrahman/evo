@@ -1,7 +1,6 @@
 import 'package:evo/page/blu_page.dart';
 import 'package:evo/page/home_page.dart';
 import 'package:evo/page/settings_page.dart';
-import 'package:evo/page/vehicle_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:evo/page/navigation_page.dart';
