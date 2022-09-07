@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                               child: StatusMiniCard(
                                 title: "34 °C",
                                 subtitle: Text(
-                                  "Temperature",
+                                  "Temp.",
                                   style: TextStyle(fontSize: 16),
                                 ),
                                 iconRight: LineIcons.thermometerAlt4Full,

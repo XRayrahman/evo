@@ -45,7 +45,7 @@ class BlueButton extends StatelessWidget {
                       Expanded(child: FittedBox(child: Icon(LineIcons.search))),
                       Text(
                         "Discover",
-                        style: TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: 28),
                       )
                     ],
                   ),
@@ -88,7 +88,7 @@ class BlueButton extends StatelessWidget {
                           child: FittedBox(child: Icon(LineIcons.commentDots))),
                       Text(
                         "Chat",
-                        style: TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: 28),
                       )
                     ],
                   ),

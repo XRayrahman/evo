@@ -121,8 +121,14 @@ class _BluPage extends State<BluPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Address : $_address"),
-                      Text("Name : $_name"),
+                      Text(
+                        "Address : $_address",
+                        style: TextStyle(fontSize: 13),
+                      ),
+                      Text(
+                        "Name : $_name",
+                        style: TextStyle(fontSize: 13),
+                      ),
                     ],
                   ),
                 ),
