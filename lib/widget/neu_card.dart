@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class NeuCard extends StatelessWidget {
   final Widget? childs;
-  const NeuCard({Key? key, this.childs}) : super(key: key);
+  final EdgeInsetsGeometry? padding;
+  const NeuCard({Key? key, this.childs, this.padding}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Container(
+        padding: padding,
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(20),
